@@ -53,6 +53,26 @@
 
       /* HERO SLIDER */
 
+      /* TOP BAR */
+      .top-bar {
+        background: var(--green);
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        font-weight: 700;
+        position: relative;
+        z-index: 1001;
+      }
+      .top-bar a {
+        color: #fff;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        font-size: 15px;
+      }
+
       .hero {
         position: relative;
         height: 550px;
@@ -183,7 +203,7 @@
 
       .calculator-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr; /* 2 columns as per screenshot */
+        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
         align-items: center;
       }
@@ -227,6 +247,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
+        grid-column: 3;
       }
 
       .price-label {
@@ -817,7 +838,7 @@
       /* HEADER */
       .main-header {
         position: absolute;
-        top: 0;
+        top: 40px; /* Offset for top bar */
         left: 0;
         width: 100%;
         padding: 20px 40px;
@@ -827,7 +848,7 @@
       }
 
       .logo img {
-        height: 60px;
+        height: 100px; /* Increased size */
         width: auto;
       }
 
@@ -870,14 +891,19 @@
       /* RESPONSIVE MEDIA QUERIES */
 
       @media (max-width: 900px) {
+        .top-bar a {
+           font-size: 13px;
+        }
         .main-header {
           padding: 15px 20px;
           justify-content: center; /* Center logo on smaller screens */
           background: #fff; /* Ensure white background for logo area */
           box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Subtle separation */
+          position: relative;
+          top: 0;
         }
         .logo img {
-          height: 40px;
+          height: 60px; /* Increased from 40px */
         }
         .hero {
           height: auto;
@@ -982,6 +1008,12 @@
           font-size: 15px;
           padding-left: 30px;
         }
+        .calculator-grid {
+          grid-template-columns: 1fr;
+        }
+        .price-display {
+          grid-column: 1;
+        }
       }
 
       /* FOOTER */
@@ -996,10 +1028,18 @@
   </head>
 
   <body>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+      <a href="tel:+919789989348">
+        <svg style="width:16px; height:16px; fill:currentColor;" viewBox="0 0 24 24"><path d="M6.62,10.79C8.06,13.62 10.38,15.94 13.21,17.38L15.41,15.18C15.69,14.9 16.08,14.82 16.43,14.93C17.55,15.3 18.75,15.5 20,15.5A1,1 0 0,1 21,16.5V20A1,1 0 0,1 20,21A17,17 0 0,1 3,4A1,1 0 0,1 4,3H7.5A1,1 0 0,1 8.5,4C8.5,5.25 8.7,6.45 9.07,7.57C9.18,7.92 9.1,8.31 8.82,8.59L6.62,10.79Z"/></svg>
+        Call Us: +91 9789989348
+      </a>
+    </div>
+
     <!-- HEADER -->
     <header class="main-header">
       <div class="logo">
-        <img src="logo.jpg" alt="SPAHI" />
+        <img src="Group 15.png" alt="SPAHI" />
       </div>
     </header>
     <!-- HERO -->
@@ -1027,7 +1067,7 @@
     </section>
 
     <!-- CLIENT LOGOS -->
-    <section class="client-logos">
+    <section class="client-logos" style="padding-bottom: 60px;">
       <div class="logos-row">
         <img src="1.png" alt="Client 1" />
         <img src="2.png" alt="Client 2" />
@@ -1066,14 +1106,21 @@
               <option value="2">3 BHK</option>
             </select>
           </div>
+          <div class="calc-group">
+            <select id="type">
+              <option value="">Select Type</option>
+              <option value="1">Standard</option>
+              <option value="1.2">Premium</option>
+              <option value="0.8">Eco-Friendly</option>
+            </select>
+          </div>
 
           <!-- Hidden but functional fields for calculation -->
           <div style="display: none;">
-            <select id="type"><option value="1" selected>Standard</option></select>
             <input type="text" id="pincode" value="000000">
           </div>
 
-          <div class="price-display" style="grid-column: 2 / 3; margin-top: 10px;">
+          <div class="price-display" style="margin-top: 10px;">
             <div class="price-total" id="price">₹0.00</div>
           </div>
         </div>
@@ -1102,7 +1149,7 @@
           <!-- Card 2 -->
           <div class="service-card">
             <div class="service-icon">
-              <img src="term.webp" />
+              <img src="termites.png" />
             </div>
             <h3>TERMIT</h3>
             <p>Termites</p>
@@ -1111,7 +1158,7 @@
           <!-- Card 3 -->
           <div class="service-card">
             <div class="service-icon">
-              <img src="bed.jpg" />
+              <img src="bedbug.png" />
             </div>
             <h3>BEDKIK</h3>
             <p>Bedbugs</p>
@@ -1120,7 +1167,7 @@
           <!-- Card 4 -->
           <div class="service-card">
             <div class="service-icon">
-              <img src="ant.jpg" />
+              <img src="ant2.png" />
             </div>
             <h3>ANTTACK</h3>
             <p>Ants</p>
@@ -1138,7 +1185,7 @@
           <!-- Card 7 -->
           <div class="service-card">
             <div class="service-icon">
-              <img src="virus.jpg" />
+              <img src="anti.png" />
             </div>
             <h3>VIRUSTRIKE</h3>
             <p>Anti-Microbial</p>
@@ -1147,27 +1194,28 @@
           <!-- Card 8 -->
           <div class="service-card">
             <div class="service-icon">
-              <img src="cock.jpg" />
+              <img src="cockroach.png" />
             </div>
             <h3>KITCHENGEL</h3>
             <p>Cockroaches</p>
           </div>
 
-          <!-- Card 9 (Centered) -->
+          <!-- Card 9 -->
           <div class="service-card">
             <div class="service-icon">
-              <img src="rat.jpg" />
-            </div>
-            <h3>MOUSTUCK</h3>
-            <p>Rats</p>
-          </div>
-
-          <div class="service-card">
-            <div class="service-icon">
-              <img src="house.jpg" />
+              <img src="home.png" />
             </div>
             <h3>HOMEPLUS</h3>
             <p>All in one</p>
+          </div>
+
+          <!-- Card 10 (Rat) -->
+          <div class="service-card">
+             <div class="service-icon">
+               <img src="rat2.png" />
+             </div>
+             <h3>MOUSTUCK</h3>
+             <p>Rats</p>
           </div>
         </div>
       </div>
