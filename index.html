@@ -1584,28 +1584,37 @@
     <!-- SCRIPT -->
 
     <script>
-      /* PRICE */
-
+      /* INITIALIZATION */
       const service = document.getElementById("service");
       const area = document.getElementById("area");
       const type = document.getElementById("type");
       const price = document.getElementById("price");
+      const modal = document.getElementById("modal");
+      const openBtn = document.getElementById("openModal");
+      const closeBtn = document.getElementById("closeModal");
+      const bookNowBtn = document.getElementById("bookNowBtn");
+      const autoBtn = document.getElementById("auto-detect-btn");
+      const stateEl = document.getElementById("state");
+      const formStateEl = document.getElementById("form-state");
+      const popupForm = document.getElementById("popupForm");
+      const slider = document.getElementById("heroSlider");
 
+      /* PRICE CALCULATION */
       function calc() {
-        if (!service.value || !area.value || !type.value) {
-          price.innerText = "₹0.00";
+        if (!service || !area || !type || !service.value || !area.value || !type.value) {
+          if (price) price.innerText = "₹0.00";
           return;
         }
         const total =
           parseFloat(service.value) *
           parseFloat(area.value) *
           parseFloat(type.value);
-        price.innerText = "₹" + total.toFixed(2);
+        if (price) price.innerText = "₹" + total.toFixed(2);
       }
 
-      service.addEventListener("change", calc);
-      area.addEventListener("change", calc);
-      type.addEventListener("change", calc);
+      if (service) service.addEventListener("change", calc);
+      if (area) area.addEventListener("change", calc);
+      if (type) type.addEventListener("change", calc);
 
       /* STATE-CITY MAPPING */
       const stateCityData = {
@@ -1617,32 +1626,31 @@
       };
 
       function updateCities(stateId, cityId) {
-        const stateSelect = document.getElementById(stateId);
-        const citySelect = document.getElementById(cityId);
-        const selectedState = stateSelect.value;
+        const sEl = document.getElementById(stateId);
+        const cEl = document.getElementById(cityId);
+        if (!sEl || !cEl) return;
         
-        citySelect.innerHTML = '<option value="">Select City</option>';
+        const selectedState = sEl.value;
+        cEl.innerHTML = '<option value="">Select City</option>';
         
         if (selectedState && stateCityData[selectedState]) {
           stateCityData[selectedState].forEach(city => {
             const option = document.createElement("option");
             option.value = city;
             option.textContent = city;
-            citySelect.appendChild(option);
+            cEl.appendChild(option);
           });
         }
       }
 
-      document.getElementById("state").addEventListener("change", () => updateCities("state", "city"));
-      document.getElementById("form-state").addEventListener("change", () => updateCities("form-state", "form-city"));
+      if (stateEl) stateEl.addEventListener("change", () => updateCities("state", "city"));
+      if (formStateEl) formStateEl.addEventListener("change", () => updateCities("form-state", "form-city"));
 
       /* AUTO DETECT */
-      document
-        .getElementById("auto-detect-btn")
-        .addEventListener("click", () => {
-          const btn = document.getElementById("auto-detect-btn");
-          const originalText = btn.innerHTML;
-          btn.innerText = "Detecting...";
+      if (autoBtn) {
+        autoBtn.addEventListener("click", () => {
+          const originalText = autoBtn.innerHTML;
+          autoBtn.innerText = "Detecting...";
 
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -1651,36 +1659,25 @@
                 try {
                   const response = await fetch(
                     `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`,
-                    {
-                      headers: {
-                        "Accept-Language": "en",
-                      },
-                    },
+                    { headers: { "Accept-Language": "en" } }
                   );
                   const data = await response.json();
                   if (data && data.address) {
-                    const pincode =
-                      data.address.postcode ||
-                      data.address.postal_code ||
-                      data.address.zip ||
-                      "";
-                    if (pincode) {
-                      document.getElementById("pincode").value = pincode;
-                    } else {
-                      alert(
-                        "Pincode not found for this location. Please enter manually.",
-                      );
+                    const pincode = data.address.postcode || data.address.postal_code || data.address.zip || "";
+                    const pincodeEl = document.getElementById("pincode");
+                    if (pincode && pincodeEl) {
+                      pincodeEl.value = pincode;
+                    } else if (!pincode) {
+                      alert("Pincode not found for this location. Please enter manually.");
                     }
                   } else {
                     alert("Location details not found.");
                   }
                 } catch (error) {
                   console.error("Error fetching pincode:", error);
-                  alert(
-                    "Network error while detecting location. Please enter pincode manually.",
-                  );
+                  alert("Network error while detecting location. Please enter pincode manually.");
                 } finally {
-                  btn.innerHTML = originalText;
+                  autoBtn.innerHTML = originalText;
                 }
               },
               (error) => {
@@ -1689,76 +1686,72 @@
                 else if (error.code === 2) msg = "Location unavailable.";
                 else if (error.code === 3) msg = "Location request timed out.";
                 alert(msg);
-                btn.innerHTML = originalText;
+                autoBtn.innerHTML = originalText;
               },
               { timeout: 10000 },
             );
           } else {
             alert("Geolocation not supported by this browser.");
-            btn.innerHTML = originalText;
+            autoBtn.innerHTML = originalText;
           }
         });
+      }
 
-      /* BOOK NOW */
-      document.getElementById("bookNowBtn").addEventListener("click", () => {
-        modal.classList.add("active");
-      });
-
-      /* MODAL */
-
-      const openBtn = document.getElementById("openModal");
-      const modal = document.getElementById("modal");
-      const closeBtn = document.getElementById("closeModal");
-
-      openBtn.addEventListener("click", () => {
-        modal.classList.add("active");
-      });
-
-      closeBtn.addEventListener("click", () => {
-        modal.classList.remove("active");
-      });
-
-      window.addEventListener("click", (e) => {
-        if (e.target === modal) {
-          modal.classList.remove("active");
+      /* MODAL CONTROL */
+      const toggleModal = (show) => {
+        if (modal) {
+          if (show) modal.classList.add("active");
+          else modal.classList.remove("active");
         }
+      };
+
+      if (bookNowBtn) bookNowBtn.addEventListener("click", () => toggleModal(true));
+      if (openBtn) openBtn.addEventListener("click", () => toggleModal(true));
+      if (closeBtn) closeBtn.addEventListener("click", () => toggleModal(false));
+      
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) toggleModal(false);
       });
 
-      /* FORM */
-
-      document
-        .getElementById("popupForm")
-        .addEventListener("submit", function (e) {
+      /* FORM SUBMISSION */
+      if (popupForm) {
+        popupForm.addEventListener("submit", function (e) {
           e.preventDefault();
-
-          const btn = document.getElementById("submitBtn");
-          btn.innerText = "Sending...";
-          btn.disabled = true;
+          const submitBtn = document.getElementById("submitBtn");
+          if (submitBtn) {
+            submitBtn.innerText = "Sending...";
+            submitBtn.disabled = true;
+          }
 
           emailjs.sendForm("service_684ht87", "template_lyzxjt5", this).then(
             () => {
-              btn.innerText = "Submit";
-              btn.disabled = false;
+              if (submitBtn) {
+                submitBtn.innerText = "Submit";
+                submitBtn.disabled = false;
+              }
               alert("Thank you! Our team will contact you soon.");
-              modal.classList.remove("active");
+              toggleModal(false);
               this.reset();
             },
             (err) => {
-              btn.innerText = "Submit";
-              btn.disabled = false;
+              if (submitBtn) {
+                submitBtn.innerText = "Submit";
+                submitBtn.disabled = false;
+              }
               alert("FAILED... " + JSON.stringify(err));
             },
           );
         });
+      }
 
       /* HERO SLIDER AUTO-PLAY */
       let currentSlide = 0;
-      const slider = document.getElementById("heroSlider");
-      function nextSlide() {
-        currentSlide = (currentSlide + 1) % 2;
-        slider.style.transform = `translateX(-${currentSlide * 50}%)`;
+      if (slider) {
+        setInterval(() => {
+          currentSlide = (currentSlide + 1) % 2;
+          slider.style.transform = `translateX(-${currentSlide * 50}%)`;
+        }, 5000);
       }
-      setInterval(nextSlide, 5000);
     </script>
   </body>
 </html>
