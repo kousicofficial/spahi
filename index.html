@@ -173,7 +173,7 @@
 
       .calculator {
         background: #fff;
-        margin-top: 40px; /* Adjusted from -40px to create space */
+        margin-top: -60px; /* Restored immersive overlap */
         padding: 50px 40px;
         border-radius: 12px;
         box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
@@ -183,17 +183,13 @@
 
       .calculator-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr auto;
+        grid-template-columns: 1fr 1fr; /* 2 columns as per screenshot */
         gap: 20px;
-        align-items: end;
+        align-items: center;
       }
 
       .calc-group label {
-        display: block;
-        margin-bottom: 8px;
-        font-weight: 700;
-        font-size: 14px;
-        color: var(--blue);
+        display: none; /* Removed labels to match screenshot */
       }
 
       .calculator input,
@@ -228,12 +224,13 @@
 
       .price-display {
         text-align: right;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
       }
 
       .price-label {
-        font-size: 14px;
-        color: #666;
-        display: block;
+        display: none; /* Clean look */
       }
 
       .price-total {
@@ -885,7 +882,7 @@
         .hero {
           height: auto;
           min-height: unset; /* Remove min-height to avoid white gaps */
-          margin-top: 70px; /* SPACE BETWEEN LOGO AND SLIDER */
+          margin-top: 60px; /* Maintain space on mobile */
         }
         .slide-1 {
           flex-direction: column;
@@ -927,10 +924,12 @@
           padding: 10px;
         }
         .hero {
-          margin-top: 60px; /* Slight adjustment for mobile */
+          margin-top: 50px; /* Slight adjustment for mobile */
         }
-        .slide-1 .hero-right {
-          height: 180px;
+        .calculator {
+          margin-top: 20px; /* No negative margin on small mobile to avoid overlap issues */
+          padding: 25px 15px;
+          margin-bottom: 30px;
         }
         .hero h1 {
           font-size: 26px;
@@ -1049,7 +1048,6 @@
         </h2>
         <div class="calculator-grid">
           <div class="calc-group">
-            <label>Select Service*</label>
             <select id="service">
               <option value="">Select Service</option>
               <option value="1200">Mosquito</option>
@@ -1061,7 +1059,6 @@
           </div>
 
           <div class="calc-group">
-            <label>Select Area*</label>
             <select id="area">
               <option value="">Select Area</option>
               <option value="1">1 BHK</option>
@@ -1070,50 +1067,18 @@
             </select>
           </div>
 
-          <div class="calc-group">
-            <label>Select Type*</label>
-            <select id="type">
-              <option value="">Select Type</option>
-              <option value="1">Standard</option>
-              <option value="1.2">Premium</option>
-              <option value="0.8">Eco-Friendly</option>
-            </select>
+          <!-- Hidden but functional fields for calculation -->
+          <div style="display: none;">
+            <select id="type"><option value="1" selected>Standard</option></select>
+            <input type="text" id="pincode" value="000000">
           </div>
 
-          <div class="price-display">
-            <span class="price-label">Price</span>
+          <div class="price-display" style="grid-column: 2 / 3; margin-top: 10px;">
             <div class="price-total" id="price">₹0.00</div>
-          </div>
-
-          <div class="calc-group" style="grid-column: span 3">
-            <label>Pincode</label>
-            <div class="pincode-wrap">
-              <input type="text" id="pincode" placeholder="Enter Pincode" />
-              <button class="auto-detect" id="auto-detect-btn">
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="3"></circle>
-                  <line x1="12" y1="2" x2="12" y2="4"></line>
-                  <line x1="12" y1="20" x2="12" y2="22"></line>
-                  <line x1="2" y1="12" x2="4" y1="12"></line>
-                  <line x1="20" y1="12" x2="22" y1="12"></line>
-                </svg>
-                Auto Detect
-              </button>
-            </div>
           </div>
         </div>
 
-        <button class="book-now-btn" id="bookNowBtn">Book Now</button>
+        <button class="book-now-btn" id="bookNowBtn" style="margin-top: 20px;">Book Now</button>
       </div>
     </div>
 
@@ -1551,18 +1516,55 @@
 
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-              (position) => {
-                // Simulate finding pincode from lat/long
-                document.getElementById("pincode").value = "400706"; // Mock pincode
+              async (position) => {
+                const { latitude, longitude } = position.coords;
+                try {
+                  const response = await fetch(
+                    `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&addressdetails=1`,
+                    {
+                      headers: {
+                        "Accept-Language": "en",
+                      },
+                    },
+                  );
+                  const data = await response.json();
+                  if (data && data.address) {
+                    const pincode =
+                      data.address.postcode ||
+                      data.address.postal_code ||
+                      data.address.zip ||
+                      "";
+                    if (pincode) {
+                      document.getElementById("pincode").value = pincode;
+                    } else {
+                      alert(
+                        "Pincode not found for this location. Please enter manually.",
+                      );
+                    }
+                  } else {
+                    alert("Location details not found.");
+                  }
+                } catch (error) {
+                  console.error("Error fetching pincode:", error);
+                  alert(
+                    "Network error while detecting location. Please enter pincode manually.",
+                  );
+                } finally {
+                  btn.innerHTML = originalText;
+                }
+              },
+              (error) => {
+                let msg = "Could not detect location.";
+                if (error.code === 1) msg = "Location permission denied.";
+                else if (error.code === 2) msg = "Location unavailable.";
+                else if (error.code === 3) msg = "Location request timed out.";
+                alert(msg);
                 btn.innerHTML = originalText;
               },
-              () => {
-                alert("Could not detect location.");
-                btn.innerHTML = originalText;
-              },
+              { timeout: 10000 },
             );
           } else {
-            alert("Geolocation not supported.");
+            alert("Geolocation not supported by this browser.");
             btn.innerHTML = originalText;
           }
         });
