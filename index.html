@@ -1,0 +1,1632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SPAHI Pest Control | Best Pest Control Services in Navi Mumbai</title>
+    <meta name="description" content="Experience top-rated pest control services with SPAHI. We provide safe, effective, and eco-friendly solutions for homes and offices in Navi Mumbai. Book today!" />
+    <!-- EmailJS SDK -->
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "IUZ_5-qkSwxJ6dGKl",
+        });
+      })();
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --green: #009136;
+        --blue: #102983;
+        --white: #fff;
+        --light: #f9fbff;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Outfit", sans-serif;
+      }
+
+      body {
+        background: #fff;
+        color: var(--blue);
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      /* HERO SLIDER */
+
+      .hero {
+        position: relative;
+        height: 550px;
+        overflow: hidden;
+      }
+
+      .slider-container {
+        display: flex;
+        width: 200%;
+        height: 100%;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .slide {
+        width: 50%;
+        height: 100%;
+        display: flex;
+        position: relative;
+      }
+
+      .slide-1 {
+        display: flex;
+      }
+
+      .slide-2 {
+        background: linear-gradient(rgba(16, 41, 131, 0.6), rgba(16, 41, 131, 0.6)),
+                    url("slide2.jpeg") center/cover no-repeat;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+        padding: 40px;
+      }
+
+      .slide-content-wrap {
+        max-width: 800px;
+      }
+
+      .slide-1 .hero-left {
+        flex: 1;
+        background: var(--blue);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        padding: 40px;
+      }
+
+      .slide-1 .hero-right {
+        flex: 1;
+        background: url("https://images.unsplash.com/photo-1584622650111-993a426fbf0a")
+          center/cover no-repeat;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        line-height: 1.2;
+        font-weight: 800;
+      }
+
+      .hero p {
+        font-size: 20px;
+        margin-top: 20px;
+      }
+
+      .highlight-box {
+        background: var(--green);
+        color: #fff;
+        padding: 2px 12px;
+        display: inline-block;
+        border-radius: 4px;
+      }
+
+      /* BOOK TAB */
+
+      .book-tab {
+        position: fixed;
+        right: 0;
+        top: 50%;
+        transform: rotate(-90deg) translateX(50%);
+        transform-origin: bottom right;
+        background: var(--blue);
+        color: #fff;
+        padding: 15px 35px;
+        font-weight: 700;
+        cursor: pointer;
+        z-index: 99999;
+        border-radius: 8px 8px 0 0;
+        letter-spacing: 1px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        white-space: nowrap;
+      }
+
+      @media (max-width: 600px) {
+        .book-tab {
+          padding: 10px 20px;
+          font-size: 14px;
+        }
+      }
+
+      /* CALCULATOR */
+
+      .calculator-title {
+        text-align: center;
+
+        font-size: 32px;
+        font-weight: 800;
+        line-height: 1.2;
+      }
+
+      .calculator-title span {
+        background: var(--green);
+        color: #fff;
+        padding: 2px 10px;
+        display: inline-block;
+      }
+
+      .calculator {
+        background: #fff;
+        margin-top: 40px; /* Adjusted from -40px to create space */
+        padding: 50px 40px;
+        border-radius: 12px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        position: relative;
+        z-index: 10;
+      }
+
+      .calculator-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr auto;
+        gap: 20px;
+        align-items: end;
+      }
+
+      .calc-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        color: var(--blue);
+      }
+
+      .calculator input,
+      .calculator select {
+        width: 100%;
+        padding: 14px;
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        background: #fcfdfe;
+        font-size: 16px;
+      }
+
+      .pincode-wrap {
+        display: flex;
+        gap: 10px;
+      }
+
+      .auto-detect {
+        background: var(--blue);
+        color: #fff;
+        border: none;
+        padding: 0 15px;
+        border-radius: 8px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-weight: 600;
+        font-size: 13px;
+        white-space: nowrap;
+      }
+
+      .price-display {
+        text-align: right;
+      }
+
+      .price-label {
+        font-size: 14px;
+        color: #666;
+        display: block;
+      }
+
+      .price-total {
+        font-size: 50px;
+        font-weight: 800;
+        color: var(--green);
+        line-height: 1;
+      }
+
+      .book-now-btn {
+        width: 100%;
+        margin-top: 25px;
+        padding: 18px;
+        background: var(--green);
+        color: #fff;
+        border: none;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 800;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .book-now-btn:hover {
+        background: #007a2d;
+      }
+
+      @media (max-width: 900px) {
+        .calculator-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .price-display {
+          grid-column: span 2;
+          text-align: center;
+          margin-top: 10px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .calculator-grid {
+          grid-template-columns: 1fr;
+        }
+        .price-display {
+          grid-column: span 1;
+        }
+      }
+
+      /* SECTION */
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section h2 {
+        text-align: center;
+        font-size: 32px;
+        margin-bottom: 40px;
+      }
+
+      .bg-light {
+        background: var(--light);
+      }
+
+      /* SERVICES GRID */
+
+      /* Center last card if alone in row */
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+        justify-content: center; /* Center cards in the grid */
+      }
+
+      /* If only 1 card in last row → center it */
+
+      .services-grid > .service-card:last-child {
+        grid-column: span 1; /* Reset for general behavior */
+      }
+
+      @media (min-width: 901px) {
+        .services-grid > .service-card:last-child {
+          grid-column: 2 / span 2;
+        }
+      }
+
+      /* CARD */
+
+      .service-card {
+        background: #fff;
+        padding: 30px 20px;
+        border-radius: 14px;
+        text-align: center;
+        font-weight: 700;
+        color: var(--blue);
+
+        position: relative;
+        cursor: pointer;
+
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+        transition: all 0.3s ease;
+      }
+
+      /* HOVER EFFECT */
+
+      .service-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 145, 54, 0.3);
+      }
+
+      /* ROUND ICON */
+
+      .service-icon {
+        width: 55px;
+        height: 55px;
+        background: #fff;
+        border-radius: 50%;
+        overflow: hidden; /* CROPS IMAGE INTO CIRCLE */
+      }
+
+      /* ICON IMAGE */
+
+      .service-icon img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%; /* MAKES IMAGE ROUND */
+        object-fit: cover; /* FILL CIRCLE */
+      }
+
+      /* TEXT */
+
+      .service-card p {
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.4;
+      }
+
+      /* For mobile Responsive*/
+      @media (max-width: 900px) {
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      @media (max-width: 500px) {
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* SEGMENTS FIXED ALIGNMENT */
+
+      .segments-section {
+        padding: 80px 0;
+        background: #fff;
+      }
+
+      .segments-title {
+        text-align: center;
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--blue);
+        margin-bottom: 50px;
+      }
+
+      .segments-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr); /* ALWAYS 4 COLUMNS */
+        gap: 30px;
+      }
+
+      /* Card */
+
+      .segment-card {
+        text-align: center;
+      }
+
+      /* Fixed Image Box */
+
+      .segment-img {
+        width: 100%;
+        height: 220px; /* SAME HEIGHT */
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      }
+
+      /* Force Image Fit */
+
+      .segment-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* IMPORTANT */
+        display: block;
+      }
+
+      /* Title */
+
+      .segment-card h3 {
+        margin-top: 18px;
+        font-size: 22px;
+        font-weight: 700;
+        color: var(--blue);
+      }
+
+      /*For mobile* and Tab/
+/* Tablet */
+      @media (max-width: 900px) {
+        .segments-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 500px) {
+        .segments-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* STORY */
+
+      .story {
+        max-width: 550px;
+        margin: 0;
+        text-align: left;
+      }
+
+      .story p {
+        font-size: 20px; /* Increased font size */
+        line-height: 1.8;
+      }
+      /* STORY BACKGROUND IMAGE */
+
+      .story-bg {
+        background: url("story2.jpeg") center/cover no-repeat;
+
+        color: #fff;
+      }
+
+      /* Text inside story */
+
+      .story-bg h2,
+      .story-bg p {
+        color: #fff;
+      }
+
+      /* Improve spacing */
+
+      .story-bg .story {
+        padding: 40px 20px;
+      }
+
+      /* COMBINED VALUES & WHY SECTION */
+      .values-why-combined {
+        position: relative;
+        padding: 100px 0;
+        background: var(--light);
+        color: var(--blue);
+      }
+
+      .combined-grid {
+        display: flex;
+        gap: 60px;
+        align-items: stretch;
+      }
+
+      .combined-left,
+      .combined-right {
+        flex: 1;
+      }
+
+      .combined-left h2,
+      .combined-right h2 {
+        color: var(--blue);
+        text-align: left;
+        margin-bottom: 30px;
+        font-size: 32px;
+      }
+
+      .values-flex {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .value-item {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid #e0e0e0;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        color: var(--blue);
+        font-weight: 600;
+        transition: all 0.3s ease;
+      }
+
+      .value-item:hover {
+        background: var(--green);
+        transform: translateX(10px);
+      }
+
+      .why-list-new {
+        list-style: none;
+        padding: 0;
+      }
+
+      .why-list-new li {
+        margin-bottom: 20px;
+        padding-left: 35px;
+        position: relative;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .why-list-new li:before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        color: var(--green);
+        font-weight: 900;
+        font-size: 20px;
+      }
+
+      @media (max-width: 900px) {
+        .combined-grid {
+          flex-direction: column;
+          gap: 40px;
+        }
+      }
+
+      /* REVIEWS */
+
+      /* REVIEWS SECTION */
+
+      /* SECTION */
+
+      .reviews-section {
+        padding: 90px 0;
+        background: #f9fbff;
+      }
+
+      /* Title */
+
+      .reviews-title {
+        text-align: center;
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 50px;
+      }
+
+      .reviews-title span {
+        background: #009136;
+        color: #fff;
+        padding: 4px 12px;
+      }
+
+      /* Wrapper */
+
+      .reviews-wrapper {
+        display: flex;
+        gap: 30px;
+        align-items: stretch;
+      }
+
+      /* LEFT CARD */
+
+      .google-rating-card {
+        width: 280px;
+        background: #fff;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        text-align: center;
+      }
+
+      .google-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+        margin-bottom: 15px;
+      }
+
+      .google-header img {
+        width: 32px;
+      }
+
+      .rating-number {
+        font-size: 32px;
+        font-weight: 800;
+      }
+
+      .stars {
+        color: var(--green);
+        margin: 10px 0;
+        font-size: 18px;
+      }
+
+      .review-count {
+        margin-bottom: 25px;
+      }
+
+      .rating-btn {
+        width: 100%;
+        padding: 12px;
+        background: var(--green);
+        color: #fff;
+        border: none;
+        font-weight: 700;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .rating-btn:hover {
+        background: #102983;
+        color: #fff;
+      }
+
+      /* SLIDER */
+
+      .reviews-slider {
+        flex: 1;
+        overflow: hidden;
+      }
+
+      .reviews-track {
+        display: flex;
+        gap: 20px;
+        width: max-content;
+        animation: scrollReviews 25s linear infinite;
+      }
+
+      @keyframes scrollReviews {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+
+      /* REVIEW CARD */
+
+      .review-card {
+        width: 340px;
+        background: #fff;
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      }
+
+      /* USER HEADER */
+
+      .review-user {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+      }
+
+      /* AVATAR */
+
+      .review-avatar {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 2px solid #009136;
+        flex-shrink: 0;
+      }
+
+      .review-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* INFO */
+
+      .review-info h3 {
+        margin: 0;
+        font-size: 17px;
+        font-weight: 700;
+        color: var(--blue);
+      }
+
+      .review-info .stars {
+        font-size: 14px;
+        margin: 3px 0 0;
+      }
+
+      /* TEXT */
+
+      .review-card p {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #333;
+      }
+
+      /* Responsive */
+
+      @media (max-width: 900px) {
+        .reviews-wrapper {
+          flex-direction: column;
+        }
+
+        .google-rating-card {
+          width: 100%;
+        }
+
+        .reviews-track {
+          /* Keep animation on mobile */
+          animation: scrollReviews 30s linear infinite;
+        }
+        
+        .reviews-slider {
+          margin-top: 20px;
+        }
+      }
+
+      /* MODAL */
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-box {
+        background: #fff;
+        padding: 30px;
+        width: 90%;
+        max-width: 400px;
+        border-radius: 10px;
+        position: relative;
+      }
+
+      .close {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 25px;
+        cursor: pointer;
+      }
+
+      .modal-box input,
+      .modal-box select,
+      .modal-box textarea {
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+
+      .modal-box button {
+        width: 100%;
+        padding: 12px;
+        background: var(--green);
+        border: none;
+        color: #fff;
+        font-weight: 700;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+
+      .modal-box button:hover {
+        background: var(--blue);
+      }
+
+      /* HEADER */
+      .main-header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px 40px;
+        z-index: 1000;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      .logo img {
+        height: 60px;
+        width: auto;
+      }
+
+      /* CLIENT LOGOS SECTION */
+      .client-logos {
+        padding: 50px 0 20px;
+        background: #fff;
+        text-align: center;
+      }
+
+      .logos-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 40px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .logos-row img {
+        height: 80px; /* Increased size */
+        width: auto;
+        transition: transform 0.3s ease;
+      }
+
+      @media (max-width: 600px) {
+        .logos-row {
+          gap: 20px;
+        }
+        .logos-row img {
+          height: 40px; /* Further reduced for mobile */
+        }
+        .client-logos {
+          padding: 30px 0;
+        }
+      }
+
+      /* RESPONSIVE MEDIA QUERIES */
+
+      @media (max-width: 900px) {
+        .main-header {
+          padding: 15px 20px;
+          justify-content: center; /* Center logo on smaller screens */
+          background: #fff; /* Ensure white background for logo area */
+          box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* Subtle separation */
+        }
+        .logo img {
+          height: 40px;
+        }
+        .hero {
+          height: auto;
+          min-height: unset; /* Remove min-height to avoid white gaps */
+          margin-top: 70px; /* SPACE BETWEEN LOGO AND SLIDER */
+        }
+        .slide-1 {
+          flex-direction: column;
+        }
+        .slide-1 .hero-left {
+          padding: 40px 20px; /* Fixed padding for better spacing */
+          text-align: center;
+        }
+        .slide-1 .hero-right {
+          height: 250px;
+          width: 100%;
+          background-position: center top;
+        }
+        .hero h1 {
+          font-size: 30px;
+        }
+        .price-total {
+          font-size: 36px;
+        }
+        .story-bg h2 {
+          font-size: 28px;
+        }
+        /* SECTION SPACING */
+        .section, 
+        .reviews-section, 
+        .segments-section, 
+        .values-why-combined, 
+        .story-bg .story {
+          padding: 50px 0; /* Reduced but consistent padding */
+        }
+        .calculator {
+          margin-top: 20px;
+          margin-bottom: 40px;
+        }
+      }
+
+      @media (max-width: 600px) {
+        .main-header {
+          padding: 10px;
+        }
+        .hero {
+          margin-top: 60px; /* Slight adjustment for mobile */
+        }
+        .slide-1 .hero-right {
+          height: 180px;
+        }
+        .hero h1 {
+          font-size: 26px;
+        }
+        .hero p {
+          font-size: 15px;
+        }
+        .calculator {
+          padding: 25px 15px;
+          margin-top: 15px;
+        }
+        .calculator-title {
+          font-size: 22px;
+        }
+        .story-bg .story {
+          padding: 40px 15px;
+        }
+        .story-bg {
+          background: linear-gradient(135deg, var(--blue) 0%, #0a184a 100%) !important;
+          position: relative;
+          overflow: hidden;
+        }
+        /* Add a subtle decorative effect for story */
+        .story-bg::after {
+          content: "";
+          position: absolute;
+          top: -50%;
+          left: -50%;
+          width: 200%;
+          height: 200%;
+          background: radial-gradient(circle, rgba(0, 145, 54, 0.1) 0%, transparent 70%);
+          pointer-events: none;
+        }
+        .story p {
+          font-size: 15px;
+        }
+        .values-why-combined {
+          padding: 50px 0;
+        }
+        .combined-left h2, .combined-right h2 {
+          font-size: 24px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+        .value-item {
+          text-align: center;
+          padding: 15px;
+        }
+        .why-list-new li {
+          font-size: 15px;
+          padding-left: 30px;
+        }
+      }
+
+      /* FOOTER */
+
+      footer {
+        background: var(--blue);
+        color: #fff;
+        padding: 40px;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header class="main-header">
+      <div class="logo">
+        <img src="logo.jpg" alt="SPAHI" />
+      </div>
+    </header>
+    <!-- HERO -->
+
+    <section class="hero">
+      <div class="slider-container" id="heroSlider">
+        <!-- Slide 1 -->
+        <div class="slide slide-1">
+          <div class="hero-left">
+            <h1>Protecting Your Space with Safe & Effective <span class="highlight-box">Pest Control</span></h1>
+          </div>
+          <div class="hero-right"></div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide slide-2">
+          <div class="slide-content-wrap">
+            <h2>Pest Problems? We’ve Got You Covered</h2>
+            <p>
+              <span class="highlight-box">Say Goodbye to Pests</span> with Fast, safe, and effective pest control solutions for homes, hospitals, and businesses
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLIENT LOGOS -->
+    <section class="client-logos">
+      <div class="logos-row">
+        <img src="1.png" alt="Client 1" />
+        <img src="2.png" alt="Client 2" />
+        <img src="3.png" alt="Client 3" />
+        <img src="4.png" alt="Client 4" />
+        <img src="5.png" alt="Client 5" />
+      </div>
+    </section>
+
+    <div class="book-tab" id="openModal">BOOK APPOINTMENT</div>
+
+    <!-- CALCULATOR -->
+
+    <div class="container">
+      <div class="calculator">
+        <h2 class="calculator-title">
+          The <span>Pest Control</span> company that gets the job done.
+        </h2>
+        <div class="calculator-grid">
+          <div class="calc-group">
+            <label>Select Service*</label>
+            <select id="service">
+              <option value="">Select Service</option>
+              <option value="1200">Mosquito</option>
+              <option value="1500">Termite</option>
+              <option value="1800">Bedbugs</option>
+              <option value="1300">Cockroaches</option>
+              <option value="1600">Rats</option>
+            </select>
+          </div>
+
+          <div class="calc-group">
+            <label>Select Area*</label>
+            <select id="area">
+              <option value="">Select Area</option>
+              <option value="1">1 BHK</option>
+              <option value="1.5">2 BHK</option>
+              <option value="2">3 BHK</option>
+            </select>
+          </div>
+
+          <div class="calc-group">
+            <label>Select Type*</label>
+            <select id="type">
+              <option value="">Select Type</option>
+              <option value="1">Standard</option>
+              <option value="1.2">Premium</option>
+              <option value="0.8">Eco-Friendly</option>
+            </select>
+          </div>
+
+          <div class="price-display">
+            <span class="price-label">Price</span>
+            <div class="price-total" id="price">₹0.00</div>
+          </div>
+
+          <div class="calc-group" style="grid-column: span 3">
+            <label>Pincode</label>
+            <div class="pincode-wrap">
+              <input type="text" id="pincode" placeholder="Enter Pincode" />
+              <button class="auto-detect" id="auto-detect-btn">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <line x1="12" y1="2" x2="12" y2="4"></line>
+                  <line x1="12" y1="20" x2="12" y2="22"></line>
+                  <line x1="2" y1="12" x2="4" y1="12"></line>
+                  <line x1="20" y1="12" x2="22" y1="12"></line>
+                </svg>
+                Auto Detect
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <button class="book-now-btn" id="bookNowBtn">Book Now</button>
+      </div>
+    </div>
+
+    <!-- SERVICES -->
+
+    <section class="section bg-light">
+      <div class="container">
+        <h2>Quality Solutions for Every Pest</h2>
+
+        <!-- GRID -->
+        <div class="services-grid">
+          <!-- Card 1 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="mosq.jpg" />
+            </div>
+            <h3>MOSKIT</h3>
+            <p>Mosquitoes</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="term.webp" />
+            </div>
+            <h3>TERMIT</h3>
+            <p>Termites</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="bed.jpg" />
+            </div>
+            <h3>BEDKIK</h3>
+            <p>Bedbugs</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="ant.jpg" />
+            </div>
+            <h3>ANTTACK</h3>
+            <p>Ants</p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="bird.webp" />
+            </div>
+            <h3>BIRDWATCH</h3>
+            <p>Birds</p>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="virus.jpg" />
+            </div>
+            <h3>VIRUSTRIKE</h3>
+            <p>Anti-Microbial</p>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="cock.jpg" />
+            </div>
+            <h3>KITCHENGEL</h3>
+            <p>Cockroaches</p>
+          </div>
+
+          <!-- Card 9 (Centered) -->
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="rat.jpg" />
+            </div>
+            <h3>MOUSTUCK</h3>
+            <p>Rats</p>
+          </div>
+
+          <div class="service-card">
+            <div class="service-icon">
+              <img src="house.jpg" />
+            </div>
+            <h3>HOMEPLUS</h3>
+            <p>All in one</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="reviews-section">
+      <div class="container">
+        <h2 class="reviews-title">Genuine Customer <span>Reviews</span></h2>
+
+        <div class="reviews-wrapper">
+          <!-- Left Rating Card -->
+          <div class="google-rating-card">
+            <div class="google-header">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
+                alt="Google"
+                style="width: 32px"
+              />
+              <span>Rating</span>
+            </div>
+            <div class="rating-number">5.0</div>
+            <div class="stars">★★★★★</div>
+            <div class="review-count">460+ Reviews</div>
+            <button
+              class="rating-btn"
+              onclick="
+                window.open(
+                  'https://www.google.com/search?q=spahi+pest+control+reviews',
+                  '_blank',
+                )
+              "
+            >
+              View All Rating
+            </button>
+          </div>
+
+          <!-- Slider -->
+          <div class="reviews-slider">
+            <div class="reviews-track">
+              <!-- Review 1 -->
+              <div class="review-card">
+                <div class="review-user">
+                  <div class="review-avatar">
+                    <div
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #444;
+                        color: #fff;
+                        font-weight: 800;
+                      "
+                    >
+                      JD
+                    </div>
+                  </div>
+                  <div class="review-info">
+                    <h3>Jayesh Dhanawade</h3>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
+                    style="width: 20px; margin-left: auto"
+                  />
+                </div>
+                <p>
+                  Very prompt and 100 percent effective for Cockroaches, Mr.
+                  Sushil did a great job....have using their services for many
+                  years.
+                </p>
+              </div>
+
+              <!-- Review 2 -->
+              <div class="review-card">
+                <div class="review-user">
+                  <div class="review-avatar">
+                    <div
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #444;
+                        color: #fff;
+                        font-weight: 800;
+                      "
+                    >
+                      SP
+                    </div>
+                  </div>
+                  <div class="review-info">
+                    <h3>Simran Pawar</h3>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
+                    style="width: 20px; margin-left: auto"
+                  />
+                </div>
+                <p>
+                  Good Employees And Experienced Tech Close to 50 years of
+                  Experience in Navi Mumbai, Hospital Service And More .
+                </p>
+              </div>
+
+              <!-- Duplicate (for slider effect) -->
+              <div class="review-card">
+                <div class="review-user">
+                  <div class="review-avatar">
+                    <div
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #444;
+                        color: #fff;
+                        font-weight: 800;
+                      "
+                    >
+                      JD
+                    </div>
+                  </div>
+                  <div class="review-info">
+                    <h3>Jayesh Dhanawade</h3>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
+                    style="width: 20px; margin-left: auto"
+                  />
+                </div>
+                <p>
+                  Very prompt and 100 percent effective for Cockroaches, Mr.
+                  Sushil did a great job....have using their services for many
+                  years.
+                </p>
+              </div>
+
+              <div class="review-card">
+                <div class="review-user">
+                  <div class="review-avatar">
+                    <div
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background: #444;
+                        color: #fff;
+                        font-weight: 800;
+                      "
+                    >
+                      SP
+                    </div>
+                  </div>
+                  <div class="review-info">
+                    <h3>Simran Pawar</h3>
+                    <div class="stars">★★★★★</div>
+                  </div>
+                  <img
+                    src="https://cdn-icons-png.flaticon.com/512/2991/2991148.png"
+                    style="width: 20px; margin-left: auto"
+                  />
+                </div>
+                <p>
+                  Good Employees And Experienced Tech Close to 50 years of
+                  Experience in Navi Mumbai, Hospital Service And More .
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEGMENTS SECTION -->
+
+    <section class="segments-section">
+      <div class="container">
+        <h2 class="segments-title">Segments</h2>
+
+        <div class="segments-grid">
+          <!-- Card -->
+          <div class="segment-card">
+            <div class="segment-img">
+              <img src="image1.jpg" alt="Corporate" />
+            </div>
+            <h3>Corporate</h3>
+          </div>
+
+          <div class="segment-card">
+            <div class="segment-img">
+              <img src="resident.webp" alt="Residential" />
+            </div>
+            <h3>Residential</h3>
+          </div>
+
+          <div class="segment-card">
+            <div class="segment-img">
+              <img src="commercial.jpg" alt="Commercial" />
+            </div>
+            <h3>Commercial</h3>
+          </div>
+
+          <div class="segment-card">
+            <div class="segment-img">
+              <img src="hospital.webp" alt="Hospitality" />
+            </div>
+            <h3>Hospitality</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+
+    <section class="section story-bg">
+      <div class="container">
+        <div class="story">
+          <h2>Our Story</h2>
+          <p>
+            Spahi is a professional pest control service focused on protecting
+            your health and environment through safe, eco-friendly solutions.
+          </p>
+
+          <p>
+            Our skilled team uses modern techniques and personalized plans to
+            eliminate pests while minimizing chemical use.
+          </p>
+
+          <p>
+            We ensure effective results and long-term customer satisfaction.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMBINED VALUES & WHY -->
+    <section class="values-why-combined">
+      <div class="container">
+        <div class="combined-grid">
+          <!-- CORE VALUES -->
+          <div class="combined-left">
+            <h2>Core Values</h2>
+            <div class="values-flex">
+              <div class="value-item">Sustainable Solutions</div>
+              <div class="value-item">Customer-Centric Approach</div>
+              <div class="value-item">Certified Professional Service</div>
+            </div>
+          </div>
+
+          <!-- WHY CHOOSE -->
+          <div class="combined-right">
+            <h2>Why Choose Spahi?</h2>
+            <ul class="why-list-new">
+              <li>Hygienic, pest-free environments</li>
+              <li>Eco-friendly and effective treatments</li>
+              <li>Courteous, professional support</li>
+              <li>Long-term client relationships</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+
+    <!-- FOOTER -->
+
+    <footer>
+      <p>© 2026 SPAHI Pest Control Services</p>
+      <p>Be Pest Free. For Good.</p>
+    </footer>
+
+    <!-- MODAL -->
+
+    <div class="modal" id="modal">
+      <div class="modal-box">
+        <span class="close" id="closeModal">&times;</span>
+
+        <h3 style="text-align: center; margin-bottom: 15px">Book Service</h3>
+
+        <form id="popupForm">
+          <input type="text" name="from_name" placeholder="Name" required />
+
+          <input type="tel" name="phone" placeholder="Phone" required />
+
+          <input type="text" name="city" placeholder="City" required />
+
+          <select name="service" required>
+            <option value="">Select Service</option>
+            <option value="Mosquito">Mosquito</option>
+            <option value="Termite">Termite</option>
+            <option value="Bedbugs">Bedbugs</option>
+            <option value="Cockroaches">Cockroaches</option>
+            <option value="Rats">Rats</option>
+          </select>
+
+          <textarea name="message" rows="3" placeholder="Message"></textarea>
+
+          <button type="submit" id="submitBtn">Submit</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- SCRIPT -->
+
+    <script>
+      /* PRICE */
+
+      const service = document.getElementById("service");
+      const area = document.getElementById("area");
+      const type = document.getElementById("type");
+      const price = document.getElementById("price");
+
+      function calc() {
+        if (!service.value || !area.value || !type.value) {
+          price.innerText = "₹0.00";
+          return;
+        }
+        const total =
+          parseFloat(service.value) *
+          parseFloat(area.value) *
+          parseFloat(type.value);
+        price.innerText = "₹" + total.toFixed(2);
+      }
+
+      service.addEventListener("change", calc);
+      area.addEventListener("change", calc);
+      type.addEventListener("change", calc);
+
+      /* AUTO DETECT */
+      document
+        .getElementById("auto-detect-btn")
+        .addEventListener("click", () => {
+          const btn = document.getElementById("auto-detect-btn");
+          const originalText = btn.innerHTML;
+          btn.innerText = "Detecting...";
+
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+              (position) => {
+                // Simulate finding pincode from lat/long
+                document.getElementById("pincode").value = "400706"; // Mock pincode
+                btn.innerHTML = originalText;
+              },
+              () => {
+                alert("Could not detect location.");
+                btn.innerHTML = originalText;
+              },
+            );
+          } else {
+            alert("Geolocation not supported.");
+            btn.innerHTML = originalText;
+          }
+        });
+
+      /* BOOK NOW */
+      document.getElementById("bookNowBtn").addEventListener("click", () => {
+        modal.classList.add("active");
+      });
+
+      /* MODAL */
+
+      const openBtn = document.getElementById("openModal");
+      const modal = document.getElementById("modal");
+      const closeBtn = document.getElementById("closeModal");
+
+      openBtn.addEventListener("click", () => {
+        modal.classList.add("active");
+      });
+
+      closeBtn.addEventListener("click", () => {
+        modal.classList.remove("active");
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("active");
+        }
+      });
+
+      /* FORM */
+
+      document
+        .getElementById("popupForm")
+        .addEventListener("submit", function (e) {
+          e.preventDefault();
+
+          const btn = document.getElementById("submitBtn");
+          btn.innerText = "Sending...";
+          btn.disabled = true;
+
+          emailjs.sendForm("service_684ht87", "template_lyzxjt5", this).then(
+            () => {
+              btn.innerText = "Submit";
+              btn.disabled = false;
+              alert("Thank you! Our team will contact you soon.");
+              modal.classList.remove("active");
+              this.reset();
+            },
+            (err) => {
+              btn.innerText = "Submit";
+              btn.disabled = false;
+              alert("FAILED... " + JSON.stringify(err));
+            },
+          );
+        });
+
+      /* HERO SLIDER AUTO-PLAY */
+      let currentSlide = 0;
+      const slider = document.getElementById("heroSlider");
+      function nextSlide() {
+        currentSlide = (currentSlide + 1) % 2;
+        slider.style.transform = `translateX(-${currentSlide * 50}%)`;
+      }
+      setInterval(nextSlide, 5000);
+    </script>
+  </body>
+</html>
