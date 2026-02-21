@@ -879,6 +879,14 @@
       @media (max-width: 600px) {
         .logos-row {
           gap: 20px;
+          flex-wrap: nowrap;
+          overflow-x: auto;
+          justify-content: flex-start;
+          padding-bottom: 10px;
+          -webkit-overflow-scrolling: touch;
+        }
+        .logos-row::-webkit-scrollbar {
+          display: none;
         }
         .logos-row img {
           height: 60px; /* Increased for better visibility on mobile */
