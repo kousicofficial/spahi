@@ -892,7 +892,7 @@
           height: 60px; /* Increased for better visibility on mobile */
         }
         .client-logos {
-          padding: 20px 0;
+          padding: 10px 0 0px; /* Minimal space below logos */
         }
       }
 
@@ -914,9 +914,9 @@
           height: 80px; /* Increased from 60px */
         }
         .hero {
-          height: auto;
-          min-height: unset; /* Remove min-height to avoid white gaps */
-          margin-top: 10px; /* Reduced gap between logo and hero on mobile */
+          height: 450px; /* Consistent fixed height on mobile */
+          min-height: 450px;
+          margin-top: 0px; 
         }
         .slide-1 {
           flex-direction: column;
@@ -926,7 +926,8 @@
           text-align: center;
         }
         .slide-1 .hero-right {
-          height: 250px;
+          height: auto;
+          flex: 1; /* Take up remaining space in fixed-height hero */
           width: 100%;
           background-position: center top;
         }
@@ -956,6 +957,9 @@
       @media (max-width: 600px) {
         .main-header {
           padding: 10px;
+        }
+        .container {
+          padding: 10px 15px; /* Reduced container padding for mobile */
         }
         .hero {
           margin-top: 0px; /* Removed gap for small mobile */
@@ -1075,7 +1079,7 @@
     </section>
 
     <!-- CLIENT LOGOS -->
-    <section class="client-logos" style="padding-bottom: 60px;">
+    <section class="client-logos">
       <div class="logos-row">
         <img src="1.png" alt="Client 1" />
         <img src="2.png" alt="Client 2" />
