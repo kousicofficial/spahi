@@ -1124,28 +1124,12 @@
           </div>
 
           <div class="calc-group">
-            <select id="country">
-                <option value="">Select Country</option>
-                <option value="India">India</option>
-                <option value="UAE">UAE</option>
-                <option value="USA">USA</option>
-            </select>
-          </div>
-
-          <div class="calc-group">
-            <select id="state">
-                <option value="">Select State</option>
-                <option value="Maharashtra">Maharashtra</option>
-                <option value="Delhi">Delhi</option>
-                <option value="Karnataka">Karnataka</option>
-                <option value="Gujarat">Gujarat</option>
-                <option value="Tamil Nadu">Tamil Nadu</option>
-            </select>
-          </div>
-
-          <div class="calc-group">
             <select id="city">
                 <option value="">Select City</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Banglore">Banglore</option>
+                <option value="Hossur">Hossur</option>
+                <option value="Hydrabad">Hydrabad</option>
             </select>
           </div>
 
@@ -1549,24 +1533,12 @@
 
           <input type="tel" name="phone" placeholder="Phone" required />
 
-          <select name="country" required>
-              <option value="">Select Country</option>
-              <option value="India">India</option>
-              <option value="UAE">UAE</option>
-              <option value="USA">USA</option>
-          </select>
-
-          <select name="state" id="form-state" required>
-              <option value="">Select State</option>
-              <option value="Maharashtra">Maharashtra</option>
-              <option value="Delhi">Delhi</option>
-              <option value="Karnataka">Karnataka</option>
-              <option value="Gujarat">Gujarat</option>
-              <option value="Tamil Nadu">Tamil Nadu</option>
-          </select>
-
           <select name="city" id="form-city" required>
               <option value="">Select City</option>
+              <option value="Chennai">Chennai</option>
+              <option value="Banglore">Banglore</option>
+              <option value="Hossur">Hossur</option>
+              <option value="Hydrabad">Hydrabad</option>
           </select>
 
           <input type="text" name="pincode" placeholder="Pincode" required />
@@ -1624,35 +1596,6 @@
       if (area) area.addEventListener("change", calc);
       if (type) type.addEventListener("change", calc);
 
-      /* STATE-CITY MAPPING */
-      const stateCityData = {
-        "Maharashtra": ["Mumbai", "Navi Mumbai", "Pune", "Thane", "Nagpur", "Nashik"],
-        "Delhi": ["New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi"],
-        "Karnataka": ["Bengaluru", "Mysuru", "Hubballi", "Mangaluru", "Belagavi"],
-        "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Gandhinagar"],
-        "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem"]
-      };
-
-      function updateCities(stateId, cityId) {
-        const sEl = document.getElementById(stateId);
-        const cEl = document.getElementById(cityId);
-        if (!sEl || !cEl) return;
-        
-        const selectedState = sEl.value;
-        cEl.innerHTML = '<option value="">Select City</option>';
-        
-        if (selectedState && stateCityData[selectedState]) {
-          stateCityData[selectedState].forEach(city => {
-            const option = document.createElement("option");
-            option.value = city;
-            option.textContent = city;
-            cEl.appendChild(option);
-          });
-        }
-      }
-
-      if (stateEl) stateEl.addEventListener("change", () => updateCities("state", "city"));
-      if (formStateEl) formStateEl.addEventListener("change", () => updateCities("form-state", "form-city"));
 
       /* AUTO DETECT */
       if (autoBtn) {
