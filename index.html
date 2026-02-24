@@ -1134,9 +1134,15 @@
           </div>
 
           <div class="calc-group">
-             <div class="pincode-wrap">
-               <input type="text" id="pincode" placeholder="Pincode" />
-             </div>
+              <div class="pincode-wrap">
+                <input type="text" id="pincode" placeholder="Pincode" />
+                <button type="button" class="auto-detect" id="calc-auto-detect">
+                  <svg style="width:14px;height:14px" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M3.05,13H1V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1H13V3.05C17.17,3.5 20.5,6.83 20.95,11H23V13H20.95C20.5,17.17 17.17,20.5 13,20.95V23H11V20.95C6.83,20.5 3.5,17.17 3.05,13M12,5A7,7 0 0,0 5,12A7,7 0 0,0 12,19A7,7 0 0,0 19,12A7,7 0 0,0 12,5Z" />
+                  </svg>
+                  <span>Auto-detect</span>
+                </button>
+              </div>
           </div>
 
           <div class="calc-group" style="grid-column: span 2;">
@@ -1541,9 +1547,17 @@
               <option value="Hydrabad">Hydrabad</option>
           </select>
 
-          <input type="text" name="pincode" placeholder="Pincode" required />
+          <div class="pincode-wrap" style="margin-bottom: 12px;">
+            <input type="text" name="pincode" id="form-pincode" placeholder="Pincode" required style="margin-bottom: 0;" />
+            <button type="button" class="auto-detect" id="form-auto-detect">
+              <svg style="width:14px;height:14px" viewBox="0 0 24 24">
+                <path fill="currentColor" d="M12,8A4,4 0 0,1 16,12A4,4 0 0,1 12,16A4,4 0 0,1 8,12A4,4 0 0,1 12,8M3.05,13H1V11H3.05C3.5,6.83 6.83,3.5 11,3.05V1H13V3.05C17.17,3.5 20.5,6.83 20.95,11H23V13H20.95C20.5,17.17 17.17,20.5 13,20.95V23H11V20.95C6.83,20.5 3.5,17.17 3.05,13M12,5A7,7 0 0,0 5,12A7,7 0 0,0 12,19A7,7 0 0,0 19,12A7,7 0 0,0 12,5Z" />
+              </svg>
+              <span>Auto-detect</span>
+            </button>
+          </div>
 
-          <input type="text" name="address" placeholder="Correct Address" required />
+          <input type="text" name="address" id="form-address" placeholder="Correct Address" required />
 
           <select name="service" required>
             <option value="">Select Service</option>
@@ -1573,7 +1587,8 @@
       const openBtn = document.getElementById("openModal");
       const closeBtn = document.getElementById("closeModal");
       const bookNowBtn = document.getElementById("bookNowBtn");
-      const autoBtn = document.getElementById("auto-detect-btn");
+      const calcAutoBtn = document.getElementById("calc-auto-detect");
+      const formAutoBtn = document.getElementById("form-auto-detect");
       const stateEl = document.getElementById("state");
       const formStateEl = document.getElementById("form-state");
       const popupForm = document.getElementById("popupForm");
@@ -1598,10 +1613,11 @@
 
 
       /* AUTO DETECT */
-      if (autoBtn) {
-        autoBtn.addEventListener("click", () => {
-          const originalText = autoBtn.innerHTML;
-          autoBtn.innerText = "Detecting...";
+      const handleAutoDetect = (btn, targets) => {
+        if (!btn) return;
+        btn.addEventListener("click", () => {
+          const originalText = btn.innerHTML;
+          btn.innerText = "Detecting...";
 
           if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -1614,21 +1630,58 @@
                   );
                   const data = await response.json();
                   if (data && data.address) {
-                    const pincode = data.address.postcode || data.address.postal_code || data.address.zip || "";
-                    const pincodeEl = document.getElementById("pincode");
-                    if (pincode && pincodeEl) {
-                      pincodeEl.value = pincode;
-                    } else if (!pincode) {
-                      alert("Pincode not found for this location. Please enter manually.");
+                    const addr = data.address;
+                    const pincode = addr.postcode || addr.postal_code || addr.zip || "";
+                    const city = addr.city || addr.town || addr.village || "";
+                    const suburb = addr.suburb || addr.neighbourhood || addr.city_district || "";
+                    
+                    // Format descriptive address
+                    const parts = [];
+                    if (addr.house_number) parts.push(addr.house_number);
+                    if (addr.building) parts.push(addr.building);
+                    if (addr.road) parts.push(addr.road);
+                    if (suburb) parts.push(suburb);
+                    if (city && !suburb.includes(city)) parts.push(city);
+                    if (addr.state) parts.push(addr.state);
+                    
+                    const formattedAddr = parts.join(", ");
+
+                    // Populate targets
+                    if (targets.pincode && pincode) {
+                      const el = document.getElementById(targets.pincode);
+                      if (el) el.value = pincode;
+                    }
+                    
+                    if (targets.city && city) {
+                      const el = document.getElementById(targets.city);
+                      if (el) {
+                        // Look for city in options
+                        for (let opt of el.options) {
+                          if (opt.value.toLowerCase().includes(city.toLowerCase()) || 
+                              city.toLowerCase().includes(opt.value.toLowerCase())) {
+                            el.value = opt.value;
+                            break;
+                          }
+                        }
+                      }
+                    }
+
+                    if (targets.address && formattedAddr) {
+                      const el = document.getElementById(targets.address);
+                      if (el) el.value = formattedAddr;
+                    }
+
+                    if (!pincode && !city && !formattedAddr) {
+                      alert("Location details not found. Please enter manually.");
                     }
                   } else {
                     alert("Location details not found.");
                   }
                 } catch (error) {
-                  console.error("Error fetching pincode:", error);
-                  alert("Network error while detecting location. Please enter pincode manually.");
+                  console.error("Error fetching location data:", error);
+                  alert("Network error while detecting location. Please enter manually.");
                 } finally {
-                  autoBtn.innerHTML = originalText;
+                  btn.innerHTML = originalText;
                 }
               },
               (error) => {
@@ -1637,16 +1690,28 @@
                 else if (error.code === 2) msg = "Location unavailable.";
                 else if (error.code === 3) msg = "Location request timed out.";
                 alert(msg);
-                autoBtn.innerHTML = originalText;
+                btn.innerHTML = originalText;
               },
               { timeout: 10000 },
             );
           } else {
             alert("Geolocation not supported by this browser.");
-            autoBtn.innerHTML = originalText;
+            btn.innerHTML = originalText;
           }
         });
-      }
+      };
+
+      handleAutoDetect(calcAutoBtn, {
+        pincode: "pincode",
+        city: "city",
+        address: "manual_address"
+      });
+
+      handleAutoDetect(formAutoBtn, {
+        pincode: "form-pincode",
+        city: "form-city",
+        address: "form-address"
+      });
 
       /* MODAL CONTROL */
       const toggleModal = (show) => {
