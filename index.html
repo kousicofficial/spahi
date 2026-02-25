@@ -1127,9 +1127,9 @@
             <select id="city">
                 <option value="">Select City</option>
                 <option value="Chennai">Chennai</option>
-                <option value="Banglore">Banglore</option>
-                <option value="Hossur">Hossur</option>
-                <option value="Hydrabad">Hydrabad</option>
+                <option value="Bengaluru">Bengaluru</option>
+                <option value="Hosur">Hosur</option>
+                <option value="Hyderabad">Hyderabad</option>
             </select>
           </div>
 
@@ -1542,9 +1542,9 @@
           <select name="city" id="form-city" required>
               <option value="">Select City</option>
               <option value="Chennai">Chennai</option>
-              <option value="Banglore">Banglore</option>
-              <option value="Hossur">Hossur</option>
-              <option value="Hydrabad">Hydrabad</option>
+              <option value="Bengaluru">Bengaluru</option>
+              <option value="Hosur">Hosur</option>
+              <option value="Hyderabad">Hyderabad</option>
           </select>
 
           <div class="pincode-wrap" style="margin-bottom: 12px;">
@@ -1655,12 +1655,29 @@
                     if (targets.city && city) {
                       const el = document.getElementById(targets.city);
                       if (el) {
-                        // Look for city in options
-                        for (let opt of el.options) {
-                          if (opt.value.toLowerCase().includes(city.toLowerCase()) || 
-                              city.toLowerCase().includes(opt.value.toLowerCase())) {
-                            el.value = opt.value;
-                            break;
+                        // City aliases to handle Nominatim variations
+                        const cityAliases = {
+                          "bangalore": "Bengaluru",
+                          "bengaluru": "Bengaluru",
+                          "hosur": "Hosur",
+                          "hossur": "Hosur",
+                          "hyderabad": "Hyderabad",
+                          "hydrabad": "Hyderabad",
+                          "chennai": "Chennai"
+                        };
+                        const normalised = city.toLowerCase();
+                        const mappedCity = cityAliases[normalised] || null;
+                        // 1) Try alias map first
+                        if (mappedCity) {
+                          el.value = mappedCity;
+                        } else {
+                          // 2) Fallback: fuzzy match option values
+                          for (let opt of el.options) {
+                            if (opt.value.toLowerCase().includes(normalised) ||
+                                normalised.includes(opt.value.toLowerCase())) {
+                              el.value = opt.value;
+                              break;
+                            }
                           }
                         }
                       }
